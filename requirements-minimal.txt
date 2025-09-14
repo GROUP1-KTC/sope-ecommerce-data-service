@@ -1,0 +1,4 @@
+# Core essentials for basic functionality testing
+fastapi
+uvicorn
+pydantic
