@@ -16,11 +16,10 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v4
 
-            - name: Set up JDK 17
-              uses: actions/setup-java@v4
+            - name: Set up Python
+              uses: actions/setup-python@v6
               with:
-                  java-version: "17"
-                  distribution: "temurin"
+                  python-version: "3.12"
 
             - name: Set up Docker BuildX
               uses: docker/setup-buildx-action@v3
