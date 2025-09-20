@@ -1,6 +1,6 @@
 services:
     app:
-        image: sope-ecommerce-ai-service:latest
+        image: thisisduykhanh/sope-data-service:latest
         container_name: image_service
         ports:
             - "${APP_PORT}:${APP_PORT}"
