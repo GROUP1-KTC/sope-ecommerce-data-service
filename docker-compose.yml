@@ -1,0 +1,11 @@
+services:
+    app:
+        image: sope-ecommerce-ai-service:latest
+        container_name: image_service
+        ports:
+            - "${APP_PORT}:${APP_PORT}"
+        env_file:
+            - .env
+        volumes:
+            - ./models:/app/models
+        restart: unless-stopped

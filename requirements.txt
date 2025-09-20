@@ -1,0 +1,17 @@
+scikit-learn
+sentence-transformers
+pandas
+asyncpg
+fastapi
+pydantic
+ultralytics
+Pillow
+transformers
+torch
+mlxtend
+scipy
+numpy
+uvicorn
+pydantic_settings
+python-multipart
+faiss-cpu

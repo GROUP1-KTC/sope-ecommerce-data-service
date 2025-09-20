@@ -1,0 +1,2 @@
+app/features/embedding/phobert_model/model.safetensors filter=lfs diff=lfs merge=lfs -text
+app/features/sentiment/reviews_emotion_model/model.safetensors filter=lfs diff=lfs merge=lfs -text
