@@ -6,6 +6,6 @@ services:
             - "${APP_PORT}:${APP_PORT}"
         env_file:
             - .env
-        volumes:
-            - ./models:/app/models
+        # volumes:
+        #     - ./models:/app/models
         restart: unless-stopped
