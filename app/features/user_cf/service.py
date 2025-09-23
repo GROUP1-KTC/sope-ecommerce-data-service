@@ -24,7 +24,7 @@ class UserCFRecommender:
             rows = await conn.fetch("SELECT name FROM categories;")
             self.all_categories = sorted([row["name"] for row in rows])
 
-            rows = await conn.fetch("SELECT DISTINCT brand FROM products;")
+            rows = await conn.fetch("SELECT DISTINCT brand FROM products WHERE status = 'APPROVED';")
             self.all_brands = sorted([row["brand"] for row in rows])
 
     async def _create_user_profiles(self):
@@ -63,7 +63,8 @@ class UserCFRecommender:
                         JOIN product_variants pv ON pv.product_variant_id = oi.product_variant_id
                         JOIN products p ON p.product_id = pv.product_id
                         JOIN categories c ON c.id = p.category_id
-                        WHERE oi.order_id = $1;
+                        WHERE oi.order_id = $1
+                        AND p.status = 'APPROVED';
                         """,
                         order["order_id"],
                     )
@@ -129,7 +130,8 @@ class UserCFRecommender:
                 JOIN product_variants pv ON pv.product_variant_id = oi.product_variant_id
                 JOIN products p ON p.product_id = pv.product_id
                 JOIN orders o ON o.order_id = oi.order_id
-                WHERE o.user_id = $1;
+                WHERE o.user_id = $1
+                AND p.status = 'APPROVED';
                 """,
                 user_id,
             )
@@ -157,6 +159,7 @@ class UserCFRecommender:
                     JOIN products p ON p.product_id = pv.product_id
                     JOIN orders o ON o.order_id = oi.order_id
                     WHERE o.user_id = $1
+                    AND p.status = 'APPROVED'
                     GROUP BY p.product_id, p.name;
                     """,
                     user["user_id"],
