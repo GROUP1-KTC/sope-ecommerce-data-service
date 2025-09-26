@@ -17,6 +17,14 @@ class Settings(BaseSettings):
     db_user: str
     db_pass: str
 
+    mongo_uri: str | None = None
+    db_name_mongo: str | None = None
+    collection_name: str | None = None
+
+    # JWT
+    jwt_private_key: str
+    jwt_public_key: str
+
     # AWS S3
     model_dir: str
 

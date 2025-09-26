@@ -15,3 +15,8 @@ uvicorn
 pydantic_settings
 python-multipart
 faiss-cpu
+
+PyJWT
+opencv-python
+dlib
+pymongo

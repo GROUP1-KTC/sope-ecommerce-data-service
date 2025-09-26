@@ -5,6 +5,7 @@ from app.features.detect_image.service import YOLOModel
 from app.features.embedding.service import PhoBERTEmbedding
 from app.features.sentiment.service import SentimentAnalyzer
 from app.features.user_cf.service import UserCFRecommender
+from app.features.face_authentication.service import FaceService
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from app.configs.cors import setup_cors
@@ -13,6 +14,7 @@ from app.routes import api_router
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from app.features.content_based.service import ContentRecommender
 from app.shares.layzy_model import LazyModel
+from app.configs.mongo import collection
 
 from app.configs.database import (
     cleanup_idle_connections,
@@ -47,6 +49,7 @@ def create_app() -> FastAPI:
                 )
             ),
             user_cf=LazyModel(lambda: UserCFRecommender.from_pretrained(pool)),
+            face_auth=LazyModel(lambda: FaceService.from_pretrained(collection)),  # type: ignore
         )
         yield
         # SHUTDOWN
