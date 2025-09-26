@@ -12,7 +12,7 @@ mlxtend
 scipy
 numpy
 uvicorn
-pydantic_settings
+pydantic-settings
 python-multipart
 faiss-cpu
 
