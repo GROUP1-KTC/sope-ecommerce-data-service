@@ -54,7 +54,7 @@ class ContentRecommender:
         """Load toàn bộ product từ DB"""
         async with self.pool.acquire() as conn:
             rows = await conn.fetch(
-                "SELECT product_id, name, brand, description FROM products"
+                "SELECT product_id, name, brand, description FROM products WHERE status = 'APPROVED'"
             )
 
             df = pd.DataFrame([dict(r) for r in rows])

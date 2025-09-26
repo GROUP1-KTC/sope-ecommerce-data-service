@@ -25,6 +25,7 @@ class FPGrowthRecommender:
                 JOIN orders o ON o.order_id = oi.order_id
                 JOIN product_variants pv ON pv.product_variant_id = oi.product_variant_id
                 JOIN products p ON p.product_id = pv.product_id
+                WHERE p.status = 'APPROVED'
                 GROUP BY o.order_id
                 HAVING COUNT(oi.product_variant_id) >= $1;
             """,
