@@ -31,6 +31,7 @@ class Settings(BaseSettings):
     phobert_model_path: str | None = None
     semantic_model_path: str | None = None
     yolo_model_path: str | None = None
+    shape_predictor_68_path: str | None = None
 
     aws_access_key_id: str | None = None
     aws_secret_access_key: str | None = None

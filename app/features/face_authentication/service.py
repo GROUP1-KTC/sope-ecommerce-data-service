@@ -4,6 +4,8 @@ import numpy as np
 from fastapi.responses import JSONResponse
 from bson import ObjectId
 import dlib
+import os
+from app.configs.settings import settings
 
 from app.features.face_authentication.utils import (
    crop_face, shape_to_np,
@@ -17,9 +19,12 @@ class FaceService:
             raise ValueError("Database collection must be provided for FaceService.")
         self.collection = collection
 
-        predictor_path = "shape_predictor_68_face_landmarks.dat"
+        predictor_file = "shape_predictor_68_face_landmarks.dat"
+
+        model_path = os.path.join(settings.model_dir, predictor_file)
+
         self.detector = dlib.get_frontal_face_detector()
-        self.predictor = dlib.shape_predictor(predictor_path)
+        self.predictor = dlib.shape_predictor(model_path)
         self.captured_landmarks = {}
 
     @classmethod
