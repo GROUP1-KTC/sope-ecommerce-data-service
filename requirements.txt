@@ -16,7 +16,7 @@ pydantic-settings
 python-multipart
 faiss-cpu
 
-PyJWT
+PyJWT[crypto]
 opencv-python
 dlib
 pymongo
