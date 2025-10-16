@@ -53,6 +53,10 @@ def create_app() -> FastAPI:
             face_auth=LazyModel(lambda: FaceService.from_pretrained(collection)),  
             search_by_image=LazyModel(lambda: SearchByImageService.from_pretrained()),      
         )
+
+        await app.state.models.face_auth.get()
+        await app.state.models.search_by_image.get()
+
         yield
         # SHUTDOWN
         await cleanup_idle_connections(pool)

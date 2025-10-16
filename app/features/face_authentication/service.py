@@ -144,7 +144,7 @@ class FaceService:
                 "face_auth_token": face_auth_token,
                 "similarity": float(sim),
                 "liveness": liveness_ok
-            },
+            }
             
                 
         return {
