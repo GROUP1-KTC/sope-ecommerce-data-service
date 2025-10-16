@@ -4,7 +4,6 @@ from app.configs.settings import settings
 from insightface.app import FaceAnalysis
 from fastapi import HTTPException
 from app.features.face_authentication.utils import decode_b64_to_cv2, variance_of_laplacian, get_embedding, extract_landmarks,head_movement_liveness,robust_average_embeddings,cosine_similarity, create_face_auth_token
-from app.configs.settings import settings
 
 import mediapipe as mp
 

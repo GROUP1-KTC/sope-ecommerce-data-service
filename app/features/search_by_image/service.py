@@ -2,7 +2,8 @@
 from transformers import BlipProcessor, BlipForConditionalGeneration
 import torch
 import os
-from app.configs import settings
+from app.configs.settings import settings
+
 
 class SearchByImageService:
     MODEL_DIR = os.path.join(settings.model_dir, "Salesforce/blip-image-captioning-base")
