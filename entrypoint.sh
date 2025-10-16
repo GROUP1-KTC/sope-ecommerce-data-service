@@ -50,18 +50,7 @@ if [ -n "$YOLO_MODEL_PATH" ]; then
     fi
 fi
 
-# -------------------------------
-# Download shape_predictor_68_face_landmarks.dat (single file)
-# -------------------------------
-if [ -n "$SHAPE_PREDICTOR_68_PATH" ]; then
-    SHAPE_PREDICTOR_FILE="$MODEL_DIR/shape_predictor_68_face_landmarks.dat"
-    if [ ! -f "$SHAPE_PREDICTOR_FILE" ]; then
-        echo "Downloading shape_predictor_68_face_landmarks.dat..."
-        aws s3 cp "$SHAPE_PREDICTOR_68_PATH" "$SHAPE_PREDICTOR_FILE"
-    else
-        echo "shape_predictor_68_face_landmarks.dat already exists, skip download."
-    fi
-fi
+
 
 # Run app
 exec "$@"
