@@ -3,6 +3,7 @@ from types import SimpleNamespace
 from app.features.FPGrowth.service import FPGrowthRecommender
 from app.features.detect_image.service import YOLOModel
 from app.features.embedding.service import PhoBERTEmbedding
+from app.features.search_by_image.service import SearchByImageService
 from app.features.sentiment.service import SentimentAnalyzer
 from app.features.user_cf.service import UserCFRecommender
 from app.features.face_authentication.service import FaceService
@@ -49,7 +50,8 @@ def create_app() -> FastAPI:
                 )
             ),
             user_cf=LazyModel(lambda: UserCFRecommender.from_pretrained(pool)),
-            face_auth=LazyModel(lambda: FaceService.from_pretrained(collection)),  # type: ignore
+            face_auth=LazyModel(lambda: FaceService.from_pretrained(collection)),  
+            search_by_image=LazyModel(lambda: SearchByImageService.from_pretrained()),      
         )
         yield
         # SHUTDOWN

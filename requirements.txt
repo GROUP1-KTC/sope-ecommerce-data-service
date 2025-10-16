@@ -18,5 +18,8 @@ faiss-cpu
 
 PyJWT[crypto]
 opencv-python
-dlib
 pymongo
+
+insightface
+onnxruntime
+mediapipe

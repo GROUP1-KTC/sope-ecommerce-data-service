@@ -21,6 +21,10 @@ class Settings(BaseSettings):
     db_name_mongo: str | None = None
     collection_name: str | None = None
 
+    # Face Authentication
+    similarity_threshold: float | None = 0.6
+    blur_threshold: float | None = 20.0
+
     # JWT
     jwt_private_key: str
     jwt_public_key: str
