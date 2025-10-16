@@ -14,12 +14,12 @@ class FaceService:
             raise ValueError("Database collection must be provided for FaceService.")
         self.collection = collection
 
-        MODEL_DIR = os.path.join(settings.model_dir, "insightface_models")
-
-        os.makedirs(MODEL_DIR, exist_ok=True)
+        MODEL_DIR = os.path.join(settings.model_dir, "insightface")
 
         self.model = FaceAnalysis(
-    allowed_modules=["detection", "recognition"], root=MODEL_DIR)
+            allowed_modules=["detection", "recognition"],
+            root=MODEL_DIR
+        )
         
         self.model.prepare(ctx_id=-1, det_size=(640, 640))
 

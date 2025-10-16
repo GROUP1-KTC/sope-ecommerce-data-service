@@ -54,8 +54,6 @@ def create_app() -> FastAPI:
             search_by_image=LazyModel(lambda: SearchByImageService.from_pretrained()),      
         )
 
-        await app.state.models.face_auth.get()
-        await app.state.models.search_by_image.get()
 
         yield
         # SHUTDOWN

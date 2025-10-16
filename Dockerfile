@@ -24,6 +24,15 @@ RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
 
 
+RUN python -c "from transformers import BlipProcessor, BlipForConditionalGeneration; \
+    BlipProcessor.from_pretrained('Salesforce/blip-image-captioning-base', cache_dir='/app/models/blip'); \
+    BlipForConditionalGeneration.from_pretrained('Salesforce/blip-image-captioning-base', cache_dir='/app/models/blip')"
+
+
+RUN python -c "import insightface; \
+    insightface.app.FaceAnalysis(allowed_modules=['detection','recognition'], root='/app/models/insightface').prepare(ctx_id=-1, det_size=(640,640))"
+
+
 COPY entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
