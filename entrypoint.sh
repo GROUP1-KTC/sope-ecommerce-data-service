@@ -51,6 +51,45 @@ if [ -n "$YOLO_MODEL_PATH" ]; then
 fi
 
 
+# -------------------------------
+# Download BLIP model
+# -------------------------------
+
+BLIP_TARGET="$MODEL_DIR/blip"
+if [ ! -d "$BLIP_TARGET" ]; then
+    echo "Downloading BLIP model..."
+    python -c "
+from transformers import BlipProcessor, BlipForConditionalGeneration
+p = BlipProcessor.from_pretrained('Salesforce/blip-image-captioning-base', cache_dir='$BLIP_TARGET')
+m = BlipForConditionalGeneration.from_pretrained('Salesforce/blip-image-captioning-base', cache_dir='$BLIP_TARGET')
+p.save_pretrained('$BLIP_TARGET')
+m.save_pretrained('$BLIP_TARGET')
+"
+else
+    echo "BLIP model already exists, skip download."
+fi
+
+
+
+# -------------------------------
+# Download InsightFace model
+# -------------------------------
+INSIGHTFACE_TARGET="$MODEL_DIR/insightface"
+if [ ! -d "$INSIGHTFACE_TARGET" ]; then
+    echo "Downloading InsightFace model..."
+    python -c "
+import insightface
+insightface.app.FaceAnalysis(
+    allowed_modules=['detection', 'recognition'],
+    root='$INSIGHTFACE_TARGET'
+).prepare(ctx_id=-1, det_size=(640,640))
+"
+else
+    echo "InsightFace model already exists, skip download."
+fi
+
+
+
 
 # Run app
 exec "$@"
