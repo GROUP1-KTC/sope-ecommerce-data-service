@@ -25,8 +25,10 @@ RUN pip install --no-cache-dir --upgrade pip \
 
 
 RUN python -c "from transformers import BlipProcessor, BlipForConditionalGeneration; \
-    BlipProcessor.from_pretrained('Salesforce/blip-image-captioning-base', cache_dir='/app/models/blip'); \
-    BlipForConditionalGeneration.from_pretrained('Salesforce/blip-image-captioning-base', cache_dir='/app/models/blip')"
+    p = BlipProcessor.from_pretrained('Salesforce/blip-image-captioning-base'); \
+    m = BlipForConditionalGeneration.from_pretrained('Salesforce/blip-image-captioning-base'); \
+    p.save_pretrained('/app/models/blip'); \
+    m.save_pretrained('/app/models/blip')"
 
 
 RUN python -c "import insightface; \
