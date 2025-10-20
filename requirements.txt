@@ -23,3 +23,17 @@ pymongo
 insightface
 onnxruntime
 mediapipe
+
+
+# AWS Bedrock & LangChain
+boto3
+langchain
+langchain-aws
+langgraph
+langchain-core
+
+# HTTP Client
+httpx
+
+# Redis for chat memory
+redis

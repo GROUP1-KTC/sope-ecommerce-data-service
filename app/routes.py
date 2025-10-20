@@ -7,6 +7,8 @@ from app.features.user_cf.router import router as user_cf_router
 from app.features.sentiment.router import router as sentiment_router
 from app.features.face_authentication.router import router as face_auth_router
 from app.features.search_by_image.router import router as search_by_image_router
+from app.features.chatbot.router import router as chatbot_router
+
 
 api_router = APIRouter(prefix="/api/v1")
 
@@ -18,3 +20,4 @@ api_router.include_router(user_cf_router)
 api_router.include_router(sentiment_router)
 api_router.include_router(face_auth_router)
 api_router.include_router(search_by_image_router)
+api_router.include_router(chatbot_router) 

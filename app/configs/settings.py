@@ -40,6 +40,27 @@ class Settings(BaseSettings):
     aws_secret_access_key: str | None = None
     aws_default_region: str | None = None
 
+    # Backend API
+    backend_api_url: str = "http://localhost:8082/api/v1"
+
+    # Redis Chat Memory
+    redis_host: str = "localhost"
+    redis_port: int = 6379
+    redis_pass: str | None = None
+    redis_chat_db: int = 1
+    chat_memory_ttl: int = 86400  # 24 hours
+    max_chat_history_messages: int = 20
+
+
+    # AWS Bedrock Chatbot
+    aws_access_key_id_chatbot: str | None = None
+    aws_secret_access_key_chatbot: str | None = None
+    aws_region: str = "us-east-1"
+    bedrock_model_id: str = "anthropic.claude-3-5-sonnet-20241022-v2:0"
+    knowledge_base_id: str | None = None
+    guardrail_id: str | None = None
+    guardrail_version: str = "DRAFT"
+
     model_config = ConfigDict(env_file=".env", env_file_encoding="utf-8")
 
 
