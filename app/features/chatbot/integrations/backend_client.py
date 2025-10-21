@@ -9,8 +9,10 @@ class BackendClient:
         self.headers = {
             "Content-Type": "application/json",
         }
+        self.user_token = user_token
+        self.cookies = {}
         if user_token:
-            self.headers["Authorization"] = f"Bearer {user_token}"
+            self.cookies["user_token"] = user_token
 
     async def get_product_reviews(self, product_id: str) -> Dict[str, Any]:
         """Get product reviews"""

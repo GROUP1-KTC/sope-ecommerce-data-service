@@ -41,7 +41,7 @@ FROM python:3.12.7-slim AS builder
 
 WORKDIR /app
 
-# Cài tool build & AWS CLI (builder only)
+# Install build tools & AWS CLI (builder only)
 RUN apt-get update && apt-get install -y --no-install-recommends \
         curl unzip groff less \
         libgl1 libglib2.0-0 libsm6 libxrender1 libxext6 \
@@ -52,7 +52,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf aws awscliv2.zip \
     && rm -rf /var/lib/apt/lists/*
 
-# Cài Python packages
+# Python packages
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt

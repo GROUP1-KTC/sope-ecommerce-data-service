@@ -150,16 +150,19 @@ async def chat(
     - Combines RAG (Knowledge Base) and Agent (Tools) capabilities
     """
     try:
-        # Extract token from Authorization header
+        # Extract user_token: priority to request body, then Authorization header
         user_token = request.user_token
         if not user_token and authorization and authorization.startswith("Bearer "):
             user_token = authorization.removeprefix("Bearer ").strip()
         
+        print(f"[CHATBOT] user_token from request: {user_token}")
+        
         # Generate session_id if not provided
         session_id = request.session_id or str(uuid.uuid4())
         
-        # Initialize graph
+        # Initialize graph with user_token
         graph = ReActChatbotGraph(user_token=user_token)
+        print(f"[CHATBOT] Graph initialized with user_token: {user_token}")
         
         history = _memory_store.get(session_id, []).copy()
         cached_context = _session_cache.get(session_id, [])
